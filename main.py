@@ -33,6 +33,7 @@ with tempfile.TemporaryFile() as source:
             snapshot = timestamp()
             for i in range(ITERATIONS):
                 client.sendfile(source, offset=0, count=BUFFER_SIZE)
+                source.seek(0, 0)
             print('File proxying took %d milliseconds' % (timestamp() - snapshot))
 
             print('Done serving client connection')
